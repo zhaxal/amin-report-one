@@ -5,12 +5,20 @@ function simulateAndPlot() {
   const lambda = parseFloat(document.getElementById("lambda").value);
   const mu = parseFloat(document.getElementById("mu").value);
 
-  const offeredLoads = Array.from({ length: 20 }, (_, i) => (i + 1) * 0.5);
+  // Calculate offered loads based on lambda and mu
+  const offeredLoads = Array.from(
+    { length: 20 },
+    (_, i) => ((i + 1) * 0.5 * lambda) / mu
+  );
+
+  // Calculate theoretical blocking probabilities using Erlang B formula
   const theoreticalBlocking = offeredLoads.map((A) =>
     erlangBFormula(A, servers)
   );
-  const simulatedBlocking = offeredLoads.map((A) =>
-    simulateBlockingProbability(A, mu, servers, 1000)
+
+  // Simulate blocking probabilities using Monte Carlo method
+  const simulatedBlocking = offeredLoads.map(() =>
+    simulateBlockingProbability(lambda, mu, servers, 1000)
   );
 
   const ctx = document.getElementById("chart").getContext("2d");
