@@ -25,7 +25,7 @@ The M/M/S/S queue model is used to represent systems with multiple servers and n
 
 1. Clone the repository:
   ```sh
-  git clone https://github.com/yourusername/amin-report-one.git
+  git clone https://github.com/zhaxal/amin-report-one.git
   ```
 2. Navigate to the project directory:
   ```sh
